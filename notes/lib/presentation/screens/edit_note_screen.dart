@@ -36,10 +36,36 @@ class EditNote extends StatelessWidget {
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                BlocProvider.of<EditNoteCubit>(context)
-                    .deleteNote(idController);
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HOME_ROUTE, (route) => false);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext contextAlert) => AlertDialog(
+                    title:
+                        Text('Delete'), // To display the title it is optional
+                    content: Text(
+                        'Do you want to delete ?'), // Message which will be pop up on the screen
+                    // Action widget which will provide the user to acknowledge the choice
+                    actions: [
+                      FlatButton(
+                        // FlatButton widget is used to make a text to work like a button
+                        textColor: Colors.black,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }, // function used to perform after pressing the button
+                        child: Text('CANCEL'),
+                      ),
+                      FlatButton(
+                        textColor: Colors.black,
+                        onPressed: () {
+                          BlocProvider.of<EditNoteCubit>(context)
+                              .deleteNote(idController);
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, HOME_ROUTE, (route) => false);
+                        },
+                        child: Text('ACCEPT'),
+                      ),
+                    ],
+                  ),
+                );
               },
               child: Icon(
                 Icons.delete,
@@ -113,13 +139,6 @@ class EditNote extends StatelessWidget {
     );
   }
 
-  String dateformatter() {
-    var date = DateTime.now();
-    var formatter = DateFormat('dd-MM-yyyy HH:mm');
-    String formattedDate = formatter.format(date);
-    return formattedDate;
-  }
-
   _onEditNote(context) {
     var form = _formKey.currentState;
     if (form!.validate()) {
@@ -137,5 +156,12 @@ class EditNote extends StatelessWidget {
       );
       Navigator.pushNamedAndRemoveUntil(context, HOME_ROUTE, (route) => false);
     }
+  }
+
+  String dateformatter() {
+    var date = DateTime.now();
+    var formatter = DateFormat('dd-MM-yyyy HH:mm');
+    String formattedDate = formatter.format(date);
+    return formattedDate;
   }
 }
