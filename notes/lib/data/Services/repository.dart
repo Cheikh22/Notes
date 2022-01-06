@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:notes/data/Services/Services.dart';
 import 'package:notes/data/models/notes.dart';
 
@@ -17,5 +15,13 @@ class Repository {
     final _note = await services.addNote(note);
     if (_note == null) return null;
     return _note.map<Note>((e) => Note.fromJson(e)).toList();
+  }
+
+  void deleteNote(int idController) {
+    services.deleteNote(idController);
+  }
+
+  void updateNote(Note note) {
+    services.updateNote(note);
   }
 }

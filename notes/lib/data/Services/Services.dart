@@ -10,6 +10,14 @@ class Services {
   }
 
   addNote(Note note) async {
-    await databaseHelper.InsertNote(note);
+    await databaseHelper.insertNote(note);
+  }
+
+  void deleteNote(int idController) async {
+    await databaseHelper.deleteNote(idController);
+  }
+
+  void updateNote(Note note) async{
+    await databaseHelper.updateNote(note);
   }
 }

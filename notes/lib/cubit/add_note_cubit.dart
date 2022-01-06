@@ -3,7 +3,6 @@ import 'package:meta/meta.dart';
 import 'package:notes/cubit/notes_cubit.dart';
 import 'package:notes/data/Services/repository.dart';
 import 'package:notes/data/models/notes.dart';
-
 part 'add_note_state.dart';
 
 class AddNoteCubit extends Cubit<AddNoteState> {
@@ -17,7 +16,7 @@ class AddNoteCubit extends Cubit<AddNoteState> {
     emit(AddingNote());
     repository.addNote(note).then((note) {
       if (note != null) {
-        notesCubit.addNote(note);
+        notesCubit.addNoteRefresh(note);
         emit(NoteAdded());
       }
     });

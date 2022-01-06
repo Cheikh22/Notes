@@ -23,7 +23,7 @@ class NotesCubit extends Cubit<NotesState> {
     }
   }
 
-  void addNote(Note note) {
+  void addNoteRefresh(Note note) {
     final currentState = state;
     if (currentState is NotesLoaded) {
       final noteList = currentState.notes;

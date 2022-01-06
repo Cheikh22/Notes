@@ -28,7 +28,7 @@ class AddNote extends StatelessWidget {
             padding: EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                _onSubmit(context);
+                _onAddNote(context);
               },
               child: Icon(
                 Icons.check,
@@ -102,14 +102,12 @@ class AddNote extends StatelessWidget {
     return formattedDate;
   }
 
-  _onSubmit(context) {
+  _onAddNote(context) {
     var form = _formKey.currentState;
     if (form!.validate()) {
       form.save();
       String title = titleController.text;
       String description = descriptionController.text;
-      titleController.clear();
-      descriptionController.clear();
       BlocProvider.of<AddNoteCubit>(context).createNote(
           Note(title: title, description: description, date: dateformatter()));
       Navigator.pushNamedAndRemoveUntil(context, HOME_ROUTE, (route) => false);

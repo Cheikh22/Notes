@@ -33,7 +33,7 @@ class NotesList extends StatelessWidget {
         final notes = (state as NotesLoaded).notes;
 
         return Container(
-          child: Card(
+          child: SingleChildScrollView(
             child: Column(
               children: notes.map((e) => _noteList(e, context)).toList(),
             ),
@@ -47,7 +47,7 @@ class NotesList extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.grey[300]!, // red as border color
+          color: Colors.grey[200]!, // red as border color
         ),
       ),
       child: ListTile(
@@ -55,12 +55,15 @@ class NotesList extends StatelessWidget {
           note.title!.toUpperCase(),
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
         ),
-        subtitle: Text("${note.id!}"),
+        subtitle: Text("${note.date!}"),
         trailing: IconButton(
           icon: Icon(Icons.edit),
-          onPressed: () async {},
+          onPressed: () async {
+          Navigator.pushNamed(context, EDIT_NOTE_ROUTE,arguments: note);},
         ),
-        onTap: () async {},
+        onTap: () async {
+          Navigator.pushNamed(context, EDIT_NOTE_ROUTE,arguments: note);
+        },
       ),
     );
   }

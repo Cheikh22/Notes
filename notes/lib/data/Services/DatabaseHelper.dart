@@ -78,7 +78,7 @@ class DatabaseHelper {
   }
 
 //insert a Note
-  Future<List<Map<String, dynamic>>> InsertNote(Note note) async {
+  Future<List<Map<String, dynamic>>> insertNote(Note note) async {
     try {
       Database db = await instance.database;
       var result = await db.insert(_tableName, note.toJson());
@@ -89,15 +89,19 @@ class DatabaseHelper {
   }
 
 //update a Note
-  Future<int> UpdateNote(Note note) async {
-    Database db = await instance.database;
-    var result = await db.update(_tableName, note.toJson(),
-        where: '$colId =?', whereArgs: [note.id]);
-    return result;
+  Future<int> updateNote(Note note) async {
+    try {
+      Database db = await instance.database;
+      var result = await db.update(_tableName, note.toJson(),
+          where: '$colId =?', whereArgs: [note.id]);
+      return result;
+    } catch (e) {
+      return 0;
+    }
   }
 
 // delete a Note
-  Future<int> DeleteNote(int id) async {
+  Future<int> deleteNote(int id) async {
     Database db = await instance.database;
     var result =
         await db.delete(_tableName, where: '$colId =?', whereArgs: [id]);
