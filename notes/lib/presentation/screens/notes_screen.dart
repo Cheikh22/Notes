@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes/constants/string.dart';
 import 'package:notes/cubit/notes_cubit.dart';
 import 'package:notes/data/models/notes.dart';
-import 'package:path/path.dart';
 
 class NotesList extends StatelessWidget {
   @override

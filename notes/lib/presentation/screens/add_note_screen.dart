@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:notes/constants/string.dart';
 import 'package:notes/cubit/add_note_cubit.dart';
 import 'package:notes/data/models/notes.dart';
-import 'package:path/path.dart';
 
 class AddNote extends StatelessWidget {
   TextEditingController titleController = TextEditingController();
