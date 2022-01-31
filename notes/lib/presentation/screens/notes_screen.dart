@@ -44,26 +44,38 @@ class NotesList extends StatelessWidget {
 
   Widget _noteList(Note note, context) {
     return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey[200]!, // red as border color
-        ),
-      ),
-      child: ListTile(
-        title: Text(
-          note.title!.toUpperCase(),
-          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
-        ),
-        subtitle: Text("${note.date!}"),
-        trailing: IconButton(
-          icon: Icon(Icons.edit),
-          onPressed: () async {
-          Navigator.pushNamed(context, EDIT_NOTE_ROUTE,arguments: note);},
-        ),
-        onTap: () async {
-          Navigator.pushNamed(context, EDIT_NOTE_ROUTE,arguments: note);
-        },
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(
+              note.title!.toUpperCase(),
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+            ),
+            subtitle: description(note.description!),
+            trailing: IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () async {
+                Navigator.pushNamed(context, EDIT_NOTE_ROUTE, arguments: note);
+              },
+            ),
+            onTap: () async {
+              Navigator.pushNamed(context, EDIT_NOTE_ROUTE, arguments: note);
+            },
+          ),
+          Divider(
+            height: 5.0,
+          ),
+        ],
       ),
     );
+  }
+
+  Widget description(String text) {
+    if (text.length > 35) {
+      return Text((text).substring(0, 34) + '...');
+    } else {
+      return Text(text);
+    }
   }
 }
