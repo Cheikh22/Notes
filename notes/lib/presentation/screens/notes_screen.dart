@@ -13,6 +13,7 @@ class NotesList extends StatelessWidget {
       appBar: AppBar(
         title: Text("Notes"),
         backgroundColor: Colors.green[600],
+        elevation: 0,
       ),
       body: getNotesListView(),
       floatingActionButton: FloatingActionButton(

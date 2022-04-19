@@ -45,23 +45,28 @@ class EditNote extends StatelessWidget {
                         'Do you want to delete ?'), // Message which will be pop up on the screen
                     // Action widget which will provide the user to acknowledge the choice
                     actions: [
-                      FlatButton(
-                        // FlatButton widget is used to make a text to work like a button
-                        textColor: Colors.black,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        }, // function used to perform after pressing the button
-                        child: Text('CANCEL'),
-                      ),
-                      FlatButton(
-                        textColor: Colors.black,
-                        onPressed: () {
-                          BlocProvider.of<EditNoteCubit>(context)
-                              .deleteNote(idController);
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, HOME_ROUTE, (route) => false);
-                        },
-                        child: Text('ACCEPT'),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          FlatButton(
+                            // FlatButton widget is used to make a text to work like a button
+                            textColor: Colors.black,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }, // function used to perform after pressing the button
+                            child: Text('CANCEL'),
+                          ),
+                          FlatButton(
+                            textColor: Colors.black,
+                            onPressed: () {
+                              BlocProvider.of<EditNoteCubit>(context)
+                                  .deleteNote(idController);
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, HOME_ROUTE, (route) => false);
+                            },
+                            child: Text('ACCEPT'),
+                          )
+                        ],
                       ),
                     ],
                   ),
