@@ -4,14 +4,28 @@ import 'package:notes/constants/string.dart';
 import 'package:notes/cubit/notes_cubit.dart';
 import 'package:notes/data/models/notes.dart';
 
-class NotesList extends StatelessWidget {
+class NotesList extends StatefulWidget {
+  @override
+  State<NotesList> createState() => _NotesListState();
+}
+
+class _NotesListState extends State<NotesList> {
+
+  
+  @override
+  void initState() {
+    super.initState();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<NotesCubit>(context).fetchNotes();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Notes"),
+        title: const Text("Notes"),
         backgroundColor: Colors.green[600],
         elevation: 0,
       ),
@@ -27,7 +41,7 @@ class NotesList extends StatelessWidget {
   BlocBuilder getNotesListView() {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
-        if (!(state is NotesLoaded))
+        if ((state is NotesLoading))
           return Center(child: CircularProgressIndicator());
 
         final notes = (state as NotesLoaded).notes;
