@@ -15,7 +15,7 @@ class AddNote extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Add note"),
-        backgroundColor: Colors.green[600],
+        backgroundColor: primaryDarkColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

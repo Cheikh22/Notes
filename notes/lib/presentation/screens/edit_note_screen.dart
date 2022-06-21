@@ -24,7 +24,7 @@ class EditNote extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Edit note"),
-        backgroundColor: Colors.green[600],
+        backgroundColor: primaryDarkColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);

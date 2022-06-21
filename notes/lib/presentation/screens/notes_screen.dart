@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:new_version/new_version.dart';
 import 'package:notes/presentation/constants/string.dart';
 import 'package:notes/cubit/notes_cubit.dart';
 import 'package:notes/data/models/notes.dart';
@@ -12,12 +14,35 @@ class NotesList extends StatefulWidget {
 class _NotesListState extends State<NotesList> {
 
   
+  void _checkVersion() async {
+    final newVersion = NewVersion(
+      iOSId: 'mr.digi.sedad',
+      androidId: "mr.digi.sedad",
+    );
+      final status = await newVersion.getVersionStatus();
+      if (status!.canUpdate ==true)
+        newVersion.showUpdateDialog(
+          context: context,
+          versionStatus: status,
+          allowDismissal: false,
+          dialogTitle:   "update!",
+          dismissButtonText:   "ignorer",
+          dialogText:   "please update",
+          dismissAction: () {
+            SystemNavigator.pop();
+          },
+          updateButtonText: "lets update",
+        );
+
+      print("DEVICE : " + status.localVersion);
+      print("STORE : " + status.storeVersion);
+  }
+
   @override
   void initState() {
     super.initState();
-
+     _checkVersion();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +51,13 @@ class _NotesListState extends State<NotesList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Notes"),
-        backgroundColor: Colors.green[600],
+        backgroundColor: primaryColor,
         elevation: 0,
       ),
       body: getNotesListView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pushNamed(context, ADD_NOTE_ROUTE),
-        backgroundColor: Colors.greenAccent[700],
+        backgroundColor: primaryDarkColor,
         child: const Icon(Icons.add),
       ),
     );
@@ -41,7 +66,7 @@ class _NotesListState extends State<NotesList> {
   BlocBuilder getNotesListView() {
     return BlocBuilder<NotesCubit, NotesState>(
       builder: (context, state) {
-        if ((state is NotesLoading))
+        if (!(state is NotesLoaded))
           return Center(child: CircularProgressIndicator());
 
         final notes = (state as NotesLoaded).notes;

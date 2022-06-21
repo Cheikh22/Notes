@@ -11,6 +11,7 @@ class NotesCubit extends Cubit<NotesState> {
   NotesCubit({required this.repository}) : super(NotesInitial());
 
   void fetchNotes() async {
+    emit(NotesLoading());
     repository.fetchNotes().then((notes) {
       emit(NotesLoaded(notes: notes));
     });
