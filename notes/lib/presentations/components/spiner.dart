@@ -5,7 +5,7 @@ import 'package:notes/presentations/constants/constants.dart';
 import '../constants/size_config.dart';
 
 Widget spiner({double? size}) {
-  return SpinKitFadingCircle(
+  return SpinKitCircle(
     color: primaryColor,
     size: getScreenWidth(size ?? 30),
   );

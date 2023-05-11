@@ -4,6 +4,7 @@ import 'package:notes/presentations/constants/size_config.dart';
 const Color primaryDarkColor = Color(0xFF0f330f);
 const Color primaryColor = Color.fromARGB(255, 77, 116, 10);
 const Color secondaryColor = Color(0xFFC6D166);
+const Color backgroundcolor = Color.fromARGB(255, 228, 228, 191);
 const Color errorcolor = Color(0xFFF0810F);
 
 // const primarycolor = Color(0xFF2359AF);

@@ -3,7 +3,7 @@ import 'package:notes/data/models/notes.dart';
 
 DatabaseHelper databaseHelper = DatabaseHelper();
 
-class Services {
+class NetworkServices {
   Future<List<Map<String, dynamic>>> fetchNotes() async {
     var result = await databaseHelper.getNotes();
     return result;

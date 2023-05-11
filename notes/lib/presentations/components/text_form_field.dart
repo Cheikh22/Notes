@@ -17,6 +17,10 @@ class TextFormInput extends StatelessWidget {
       this.inputFormatters,
       this.keyboardType,
       this.onTap,
+      this.autofocus = false,
+      this.counterText,
+      this.maxLines,
+      this.minLines,
       Key? key})
       : super(key: key);
 
@@ -32,6 +36,10 @@ class TextFormInput extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final TextInputType? keyboardType;
   final void Function()? onTap;
+  final bool autofocus;
+  final String? counterText;
+  final int? maxLines;
+  final int? minLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -39,30 +47,25 @@ class TextFormInput extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.only(
-              left: getScreenWidth(15),
-              right: getScreenWidth(15)),
+              left: getScreenWidth(15), right: getScreenWidth(15)),
           errorMaxLines: 4,
-          errorStyle: textstyle.copyWith(
-              color: redcolor, fontSize: getScreenWidth(12)),
+          errorStyle:
+              textstyle.copyWith(color: redcolor, fontSize: getScreenWidth(12)),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade600),
-            borderRadius: BorderRadius.all(
-                Radius.circular(getScreenWidth(7))),
+            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.all(Radius.circular(getScreenWidth(7))),
           ),
           errorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.all(
-                Radius.circular(getScreenWidth(7))),
+            borderSide: const BorderSide(color: redcolor),
+            borderRadius: BorderRadius.all(Radius.circular(getScreenWidth(7))),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade600),
-            borderRadius: BorderRadius.all(
-                Radius.circular(getScreenWidth(7))),
+            borderSide: const BorderSide(color: redcolor),
+            borderRadius: BorderRadius.all(Radius.circular(getScreenWidth(7))),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.grey.shade300),
-            borderRadius: BorderRadius.all(
-                Radius.circular(getScreenWidth(7))),
+            borderRadius: BorderRadius.all(Radius.circular(getScreenWidth(7))),
           ),
           hintText: hintText,
           fillColor: filled
@@ -71,7 +74,8 @@ class TextFormInput extends StatelessWidget {
                   : greylightycolor
               : whitecolor,
           filled: true,
-          suffixIcon: suffixIcon),
+          suffixIcon: suffixIcon,
+          counterText: counterText),
       validator: validator,
       obscureText: obsecure,
       onChanged: onChanged,
@@ -79,6 +83,9 @@ class TextFormInput extends StatelessWidget {
       inputFormatters: inputFormatters,
       keyboardType: keyboardType,
       onTap: onTap,
+      autofocus: autofocus,
+      minLines: minLines,
+      maxLines: maxLines,
     );
   }
 }

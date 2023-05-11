@@ -2,7 +2,7 @@ import 'package:notes/data/dataprovider/network_services.dart';
 import 'package:notes/data/models/notes.dart';
 
 class Repository {
-  final Services services;
+  final NetworkServices services;
 
   Repository({required this.services});
 

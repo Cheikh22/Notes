@@ -17,7 +17,7 @@ class AppRouter {
   late NotesCubit notesCubit;
 
   AppRouter() {
-    repository = Repository(services: Services());
+    repository = Repository(services: NetworkServices());
     notesCubit = NotesCubit(repository: repository);
   }
 
@@ -53,7 +53,6 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (BuildContext context) => AddNoteCubit(
               repository: repository,
-              notesCubit: notesCubit,
             ),
             child: AddNote(),
           ),
