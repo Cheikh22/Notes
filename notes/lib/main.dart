@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes/presentation/router.dart';
+import 'package:notes/router.dart';
 
 void main() {
   runApp(Notes(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notes/presentation/constants/string.dart';
-import 'package:notes/cubit/edit_note_cubit.dart';
+import 'package:notes/presentations/constants/constants.dart';
+import 'package:notes/presentations/constants/string.dart';
+import 'package:notes/bussiness_logics/cubit/edit_note_cubit.dart';
 import 'package:notes/data/models/notes.dart';
 
 class EditNote extends StatelessWidget {
@@ -48,21 +49,21 @@ class EditNote extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          FlatButton(
+                          TextButton(
                             // FlatButton widget is used to make a text to work like a button
-                            textColor: Colors.black,
+                            // textColor: Colors.black,
                             onPressed: () {
                               Navigator.pop(context);
                             }, // function used to perform after pressing the button
                             child: Text('CANCEL'),
                           ),
-                          FlatButton(
-                            textColor: Colors.black,
+                          TextButton(
+                            // textColor: Colors.black,
                             onPressed: () {
                               BlocProvider.of<EditNoteCubit>(context)
                                   .deleteNote(idController);
                               Navigator.pushNamedAndRemoveUntil(
-                                  context, HOME_ROUTE, (route) => false);
+                                  context, homePage, (route) => false);
                             },
                             child: Text('ACCEPT'),
                           )
@@ -159,7 +160,7 @@ class EditNote extends StatelessWidget {
           date: dateformatter(),
         ),
       );
-      Navigator.pushNamedAndRemoveUntil(context, HOME_ROUTE, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, homePage, (route) => false);
     }
   }
 

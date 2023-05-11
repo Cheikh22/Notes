@@ -1,7 +1,8 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-import 'package:notes/cubit/notes_cubit.dart';
-import 'package:notes/data/Services/repository.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes/bussiness_logics/cubit/notes_cubit.dart';
+import 'package:notes/data/repository/repository.dart';
 import 'package:notes/data/models/notes.dart';
 
 part 'edit_note_state.dart';

@@ -1,4 +1,4 @@
-import 'package:notes/data/Services/Services.dart';
+import 'package:notes/data/dataprovider/network_services.dart';
 import 'package:notes/data/models/notes.dart';
 
 class Repository {
@@ -12,9 +12,9 @@ class Repository {
   }
 
   Future<Note?> addNote(Note note) async {
-    final _note = await services.addNote(note);
-    if (_note == null) return null;
-    return _note.map<Note>((e) => Note.fromJson(e)).toList();
+    final notes = await services.addNote(note);
+    if (notes == null) return null;
+    return notes.map<Note>((e) => Note.fromJson(e)).toList();
   }
 
   void deleteNote(int idController) {

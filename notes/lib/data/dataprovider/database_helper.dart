@@ -11,9 +11,9 @@ class DatabaseHelper {
 
   DatabaseHelper._createInstance();
 
-  static final _dbName = 'notes.db';
-  static final _dbVersion = 1;
-  static final _tableName = 'notes';
+  static const _dbName = 'notes.db';
+  static const _dbVersion = 1;
+  static const _tableName = 'notes';
 
   String colId = 'id';
   String colTitle = 'title';
@@ -113,7 +113,7 @@ class DatabaseHelper {
     return db.close();
   }
 
-  String Dateformatter() {
+  String dateformatter() {
     var date = DateTime.now();
     var formatter = DateFormat('dd-MM-yyyy HH:mm');
     String formattedDate = formatter.format(date);

@@ -1,4 +1,4 @@
-import 'package:notes/data/Services/DatabaseHelper.dart';
+import 'package:notes/data/dataprovider/database_helper.dart';
 import 'package:notes/data/models/notes.dart';
 
 DatabaseHelper databaseHelper = DatabaseHelper();

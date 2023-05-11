@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notes/presentation/constants/string.dart';
-import 'package:notes/cubit/add_note_cubit.dart';
+import 'package:notes/presentations/constants/constants.dart';
+import 'package:notes/presentations/constants/string.dart';
+import 'package:notes/bussiness_logics/cubit/add_note_cubit.dart';
 import 'package:notes/data/models/notes.dart';
 
 class AddNote extends StatelessWidget {
@@ -109,7 +110,7 @@ class AddNote extends StatelessWidget {
       String description = descriptionController.text;
       BlocProvider.of<AddNoteCubit>(context).createNote(
           Note(title: title, description: description, date: dateformatter()));
-      Navigator.pushNamedAndRemoveUntil(context, HOME_ROUTE, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, homePage, (route) => false);
     }
   }
 }

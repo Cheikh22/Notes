@@ -1,48 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:new_version/new_version.dart';
-import 'package:notes/presentation/constants/string.dart';
-import 'package:notes/cubit/notes_cubit.dart';
+import 'package:notes/presentations/constants/constants.dart';
+import 'package:notes/presentations/constants/string.dart';
+import 'package:notes/bussiness_logics/cubit/notes_cubit.dart';
 import 'package:notes/data/models/notes.dart';
 
 class NotesList extends StatefulWidget {
+  const NotesList({super.key});
+
   @override
   State<NotesList> createState() => _NotesListState();
 }
 
 class _NotesListState extends State<NotesList> {
-
-  
-  void _checkVersion() async {
-    final newVersion = NewVersion(
-      iOSId: 'mr.digi.sedad',
-      androidId: "mr.digi.sedad",
-    );
-      final status = await newVersion.getVersionStatus();
-      if (status!.canUpdate ==true)
-        newVersion.showUpdateDialog(
-          context: context,
-          versionStatus: status,
-          allowDismissal: false,
-          dialogTitle:   "update!",
-          dismissButtonText:   "ignorer",
-          dialogText:   "please update",
-          dismissAction: () {
-            SystemNavigator.pop();
-          },
-          updateButtonText: "lets update",
-        );
-
-      print("DEVICE : " + status.localVersion);
-      print("STORE : " + status.storeVersion);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-     _checkVersion();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +26,7 @@ class _NotesListState extends State<NotesList> {
       ),
       body: getNotesListView(),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pushNamed(context, ADD_NOTE_ROUTE),
+        onPressed: () => Navigator.pushNamed(context, addNote),
         backgroundColor: primaryDarkColor,
         child: const Icon(Icons.add),
       ),
@@ -96,11 +66,11 @@ class _NotesListState extends State<NotesList> {
             trailing: IconButton(
               icon: Icon(Icons.edit),
               onPressed: () async {
-                Navigator.pushNamed(context, EDIT_NOTE_ROUTE, arguments: note);
+                Navigator.pushNamed(context, editNote, arguments: note);
               },
             ),
             onTap: () async {
-              Navigator.pushNamed(context, EDIT_NOTE_ROUTE, arguments: note);
+              Navigator.pushNamed(context, editNote, arguments: note);
             },
           ),
           Divider(
@@ -113,7 +83,7 @@ class _NotesListState extends State<NotesList> {
 
   Widget description(String text) {
     if (text.length > 35) {
-      return Text((text).substring(0, 34) + '...');
+      return Text('${(text).substring(0, 34)}...');
     } else {
       return Text(text);
     }

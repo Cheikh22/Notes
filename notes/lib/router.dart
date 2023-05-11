@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:notes/presentation/constants/string.dart';
-import 'package:notes/cubit/add_note_cubit.dart';
-import 'package:notes/cubit/edit_note_cubit.dart';
-import 'package:notes/cubit/notes_cubit.dart';
-import 'package:notes/data/Services/Services.dart';
-import 'package:notes/data/Services/repository.dart';
+import 'package:notes/presentations/constants/string.dart';
+import 'package:notes/bussiness_logics/cubit/add_note_cubit.dart';
+import 'package:notes/bussiness_logics/cubit/edit_note_cubit.dart';
+import 'package:notes/bussiness_logics/cubit/notes_cubit.dart';
+import 'package:notes/data/dataprovider/network_services.dart';
+import 'package:notes/data/repository/repository.dart';
 import 'package:notes/data/models/notes.dart';
-import 'package:notes/presentation/screens/add_note_screen.dart';
-import 'package:notes/presentation/screens/edit_note_screen.dart';
-import 'package:notes/presentation/screens/notes_screen.dart';
+import 'package:notes/presentations/screens/Splash/splash.dart';
+import 'package:notes/presentations/screens/notes/add_note_screen.dart';
+import 'package:notes/presentations/screens/notes/edit_note_screen.dart';
+import 'package:notes/presentations/screens/notes/notes_screen.dart';
 
 class AppRouter {
   late Repository repository;
@@ -22,15 +23,18 @@ class AppRouter {
 
   Route? generateRoute(RouteSettings setting) {
     switch (setting.name) {
-      case HOME_ROUTE:
+      case splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        
+      case homePage:
         return MaterialPageRoute(
           builder: (_) => BlocProvider.value(
             value: notesCubit,
-            child: NotesList(),
+            child: const NotesList(),
           ),
         );
 
-      case EDIT_NOTE_ROUTE:
+      case editNote:
         final note = setting.arguments as Note;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -44,7 +48,7 @@ class AppRouter {
           ),
         );
         
-      case ADD_NOTE_ROUTE:
+      case addNote:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (BuildContext context) => AddNoteCubit(

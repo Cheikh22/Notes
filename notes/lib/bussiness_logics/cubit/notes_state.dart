@@ -10,3 +10,4 @@ class NotesLoaded extends NotesState {
   final List<Note> notes;
   NotesLoaded({required this.notes});
 }
+
